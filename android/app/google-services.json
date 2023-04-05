@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "552088272882",
+    "project_id": "retirement-planner-4cb71",
+    "storage_bucket": "retirement-planner-4cb71.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552088272882:android:fc331a4f445f8bb2c1b56b",
+        "android_client_info": {
+          "package_name": "com.example.retirement_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "552088272882-n85b7v7lt12gd2opndb2pl9ip857a2o8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvrUqEf8YaPw2YwLBn0e-luLJFVpaJwjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "552088272882-n85b7v7lt12gd2opndb2pl9ip857a2o8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:retirement_app/routes/route_generator.dart';
 import 'package:retirement_app/screens/EarningsAndExpenses.dart';
 import 'package:retirement_app/screens/Investments.dart';
 import 'package:retirement_app/screens/Login.dart';
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
       title: 'Retiremate',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
-      home: const Investments(),
+      initialRoute: '/',
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
