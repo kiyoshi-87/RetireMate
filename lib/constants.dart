@@ -1,0 +1,1 @@
+const appname = "Retiremate";

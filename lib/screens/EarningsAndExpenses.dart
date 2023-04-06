@@ -42,6 +42,12 @@ class _EarningsState extends State<Earnings> {
                         TextFormField(
                           style: const TextStyle(fontSize: 12),
                           decoration: const InputDecoration(
+                            border: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(width: 1, color: Colors.grey),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                            ),
                             enabledBorder: OutlineInputBorder(
                               borderSide:
                                   BorderSide(width: 1, color: Colors.grey),
@@ -75,6 +81,12 @@ class _EarningsState extends State<Earnings> {
                               TextFormField(
                                 style: const TextStyle(fontSize: 12),
                                 decoration: const InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 1, color: Colors.grey),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                  ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.grey),
@@ -103,6 +115,12 @@ class _EarningsState extends State<Earnings> {
                               TextFormField(
                                 style: const TextStyle(fontSize: 12),
                                 decoration: const InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 1, color: Colors.grey),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                  ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.grey),
@@ -133,6 +151,12 @@ class _EarningsState extends State<Earnings> {
                         TextFormField(
                           style: const TextStyle(fontSize: 12),
                           decoration: const InputDecoration(
+                            border: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(width: 1, color: Colors.grey),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                            ),
                             enabledBorder: OutlineInputBorder(
                               borderSide:
                                   BorderSide(width: 1, color: Colors.grey),
@@ -179,6 +203,12 @@ class _EarningsState extends State<Earnings> {
                               TextFormField(
                                 style: const TextStyle(fontSize: 12),
                                 decoration: const InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 1, color: Colors.grey),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                  ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.grey),
@@ -207,6 +237,12 @@ class _EarningsState extends State<Earnings> {
                               TextFormField(
                                 style: const TextStyle(fontSize: 12),
                                 decoration: const InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 1, color: Colors.grey),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                  ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.grey),
@@ -271,6 +307,12 @@ class _EarningsState extends State<Earnings> {
                               TextFormField(
                                 style: const TextStyle(fontSize: 12),
                                 decoration: const InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 1, color: Colors.grey),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                  ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.grey),
@@ -298,6 +340,12 @@ class _EarningsState extends State<Earnings> {
                               TextFormField(
                                 style: const TextStyle(fontSize: 12),
                                 decoration: const InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 1, color: Colors.grey),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                  ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.grey),
@@ -325,6 +373,12 @@ class _EarningsState extends State<Earnings> {
                               TextFormField(
                                 style: const TextStyle(fontSize: 12),
                                 decoration: const InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 1, color: Colors.grey),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                  ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.grey),
