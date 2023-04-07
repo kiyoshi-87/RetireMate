@@ -1,9 +1,12 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:retirement_app/screens/EarningsAndExpenses.dart';
 import 'package:retirement_app/screens/HomePage.dart';
 import 'package:retirement_app/screens/Investments.dart';
 import 'package:retirement_app/screens/Login.dart';
 import 'package:retirement_app/screens/Signup.dart';
+import '../utils/earningsdata.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -16,7 +19,16 @@ class RouteGenerator {
         // Validation of correct data type
         return MaterialPageRoute(builder: (_) => Login());
       case '/investments':
-        return MaterialPageRoute(builder: (_) => Investments());
+        if (args is EarningsData) {
+          // print(args);
+          return MaterialPageRoute(builder: (_) => Investments(data: args));
+        }
+        return MaterialPageRoute(
+            builder: (_) => Investments(
+                  data: EarningsData([
+                    [1, 1]
+                  ], [], HashMap()),
+                ));
       case '/earningsandexpenses':
         return MaterialPageRoute(builder: (_) => Earnings());
       case '/':

@@ -1,5 +1,5 @@
 import 'dart:collection';
-
+import '../utils/earningsdata.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart' as Constants;
 
@@ -418,7 +418,10 @@ class _EarningsState extends State<Earnings> {
 
                         submitEmiDetails();
                         submitLoanDetails();
-                        print(emi);
+                        final obj = EarningsData(emi, loan, earnings);
+                        // print(obj.emi);
+                        Navigator.of(context)
+                            .pushNamed("/investments", arguments: obj);
                       }
                     },
                     child: Container(

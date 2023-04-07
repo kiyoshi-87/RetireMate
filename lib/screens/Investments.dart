@@ -1,16 +1,23 @@
 import 'dart:collection';
 import '../constants.dart' as Constants;
 import 'package:flutter/material.dart';
+import '../utils/earningsdata.dart';
 
 class Investments extends StatefulWidget {
-  const Investments({super.key});
+  final EarningsData data;
+  const Investments({super.key, required this.data});
 
   @override
-  State<Investments> createState() => _InvestmentsState();
+  // ignore: no_logic_in_create_state
+  State<Investments> createState() => _InvestmentsState(data);
 }
 
 class _InvestmentsState extends State<Investments> {
   //dropdownbutton
+  late EarningsData earningsdata;
+  _InvestmentsState(EarningsData data) {
+    earningsdata = data;
+  }
   List<String> stockIndexes = ["sensex", "nifty"];
   var index = "sensex";
   List<String> locations = ["in"];
@@ -588,9 +595,10 @@ class _InvestmentsState extends State<Investments> {
                             investments[Constants.time_for_retirement] =
                                 double.parse(retirementimeController.text);
                           }
-                          investments.forEach((key, value) {
-                            print("${key} ${value}");
-                          });
+                          // investments.forEach((key, value) {
+                          //   print("${key} ${value}");
+                          // });
+                          print(earningsdata.earnings);
                         },
                         child: Container(
                           height: 30,
