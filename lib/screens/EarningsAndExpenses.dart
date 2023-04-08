@@ -1,7 +1,7 @@
 import 'dart:collection';
-import '../utils/earningsdata.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart' as Constants;
+import '../models/earningsdata.dart';
 
 class Earnings extends StatefulWidget {
   const Earnings({super.key});
@@ -52,19 +52,19 @@ class _EarningsState extends State<Earnings> {
   submitEmiDetails() {
     emi.clear();
     emidetailsList.forEach((element) {
-      double percentage = double.parse(element.percentagecontroller.text);
+      double amount = double.parse(element.amountController.text);
       double months = double.parse(element.monthscontroller.text);
-      emi.add([percentage, months]);
+      emi.add([amount, months]);
     });
   }
 
   submitLoanDetails() {
     loan.clear();
     loanDetailsList.forEach((element) {
-      double percentage = double.parse(element.percentagecontroller.text);
+      double amount = double.parse(element.amountController.text);
       double years = double.parse(element.yearscontroller.text);
       double interest = double.parse(element.interestcontroller.text);
-      loan.add([percentage, years, interest]);
+      loan.add([amount, years, interest]);
     });
   }
 
@@ -143,7 +143,7 @@ class _EarningsState extends State<Earnings> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text(
-                              "Yearly Increment",
+                              "Yearly Increment(%)",
                               style: TextStyle(
                                   fontSize: 11.5, fontWeight: FontWeight.w500),
                             ),
@@ -450,7 +450,7 @@ class _EarningsState extends State<Earnings> {
 
 class Emidetails extends StatelessWidget {
   Emidetails({super.key});
-  TextEditingController percentagecontroller = TextEditingController();
+  TextEditingController amountController = TextEditingController();
   TextEditingController monthscontroller = TextEditingController();
 
   @override
@@ -465,14 +465,14 @@ class Emidetails extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                "%",
+                "Amount",
                 style: TextStyle(fontSize: 11.5, fontWeight: FontWeight.w500),
               ),
               SizedBox(
                 height: deviceSize.height * 0.008,
               ),
               TextFormField(
-                  controller: percentagecontroller,
+                  controller: amountController,
                   style: const TextStyle(fontSize: 14),
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
@@ -536,7 +536,7 @@ class Emidetails extends StatelessWidget {
 
 class LoanDetails extends StatelessWidget {
   LoanDetails({super.key});
-  TextEditingController percentagecontroller = TextEditingController();
+  TextEditingController amountController = TextEditingController();
   TextEditingController yearscontroller = TextEditingController();
   TextEditingController interestcontroller = TextEditingController();
 
@@ -552,7 +552,7 @@ class LoanDetails extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                "%",
+                "Amount",
                 style: TextStyle(fontSize: 11.5, fontWeight: FontWeight.w500),
               ),
               SizedBox(
@@ -560,7 +560,7 @@ class LoanDetails extends StatelessWidget {
               ),
               TextFormField(
                   style: const TextStyle(fontSize: 14),
-                  controller: percentagecontroller,
+                  controller: amountController,
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(
@@ -588,7 +588,7 @@ class LoanDetails extends StatelessWidget {
             children: [
               const Text(
                 "Years",
-                style: TextStyle(fontSize: 9, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 11.5, fontWeight: FontWeight.w500),
               ),
               SizedBox(
                 height: deviceSize.height * 0.008,
@@ -623,7 +623,7 @@ class LoanDetails extends StatelessWidget {
             children: [
               const Text(
                 "Interest",
-                style: TextStyle(fontSize: 9, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 11.5, fontWeight: FontWeight.w500),
               ),
               SizedBox(
                 height: deviceSize.height * 0.008,

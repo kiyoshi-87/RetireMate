@@ -1,7 +1,9 @@
 import 'dart:collection';
 import '../constants.dart' as Constants;
 import 'package:flutter/material.dart';
-import '../utils/earningsdata.dart';
+import '../models/earningsdata.dart';
+import '../utils/calculation.dart';
+import '../models/result.dart';
 
 class Investments extends StatefulWidget {
   final EarningsData data;
@@ -147,9 +149,9 @@ class _InvestmentsState extends State<Investments> {
                                     ),
                                     onChanged: (String? value) {
                                       // This is called when the user selects an item.
-                                      metrics[Constants.index] = value!;
+                                      // metrics[Constants.index] = value!;
                                       setState(() {
-                                        index = value;
+                                        index = value!;
                                       });
                                     },
                                     items: stockIndexes
@@ -243,8 +245,8 @@ class _InvestmentsState extends State<Investments> {
                                     onChanged: (String? value) {
                                       // This is called when the user selects an item.
                                       setState(() {
-                                        metrics[Constants.location] = value!;
-                                        location = value;
+                                        // metrics[Constants.location] = value!;
+                                        location = value!;
                                       });
                                     },
                                     items: locations
@@ -338,8 +340,8 @@ class _InvestmentsState extends State<Investments> {
                                     onChanged: (String? value) {
                                       // This is called when the user selects an item.
                                       setState(() {
-                                        metrics[Constants.metric] = value!;
-                                        choosenMetric = value;
+                                        // metrics[Constants.metric] = value!;
+                                        choosenMetric = value!;
                                       });
                                     },
                                     items: metric.map<DropdownMenuItem<String>>(
@@ -594,11 +596,14 @@ class _InvestmentsState extends State<Investments> {
 
                             investments[Constants.time_for_retirement] =
                                 double.parse(retirementimeController.text);
+
+                            metrics[Constants.index] = index;
+                            metrics[Constants.location] = location;
+                            metrics[Constants.metric] = choosenMetric;
+                            // print(investments[Constants.time_for_retirement]);
+                            Calculation(
+                                context, metrics, investments, earningsdata);
                           }
-                          // investments.forEach((key, value) {
-                          //   print("${key} ${value}");
-                          // });
-                          print(earningsdata.earnings);
                         },
                         child: Container(
                           height: 30,

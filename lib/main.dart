@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:retirement_app/routes/route_generator.dart';
 import 'package:retirement_app/screens/EarningsAndExpenses.dart';
@@ -7,6 +9,7 @@ import 'package:retirement_app/screens/Login.dart';
 import 'package:retirement_app/screens/Signup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import './models/result.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();

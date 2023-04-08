@@ -1,5 +1,8 @@
+import 'dart:collection';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../models/result.dart';
 import '../constants.dart' as Constants;
 
 class Homepage extends StatefulWidget {
@@ -10,13 +13,16 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  User? user = FirebaseAuth.instance.currentUser;
-  var _stockValue = 0.0;
   @override
   Widget build(BuildContext context) {
     var deviceSize = MediaQuery.of(context).size;
+    //get the resultant data;
+    final data = (ModalRoute.of(context)!.settings.arguments ??
+        ResultData(0, 0, 0, 0, HashMap())) as ResultData;
+    // print(data.investments[Constants.stock_investments]);
+
     return Scaffold(
-        appBar: AppBar(title: Text(Constants.appname)),
+        appBar: AppBar(title: const Text(Constants.appname)),
         drawer: Drawer(
           child: ListView(
             // Important: Remove any padding from the ListView.
@@ -36,7 +42,7 @@ class _HomepageState extends State<Homepage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           const Text(
-                            'My Profile',
+                            "My Profile ",
                             style: TextStyle(color: Colors.white),
                           ),
                           SizedBox(
@@ -77,184 +83,186 @@ class _HomepageState extends State<Homepage> {
         body: Padding(
           padding: EdgeInsets.fromLTRB(
               deviceSize.height * 0.08, 0, deviceSize.height * 0.08, 0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: deviceSize.height * 0.02,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "Total Earnings",
-                        style: TextStyle(fontSize: 14),
-                      ),
-                      SizedBox(
-                        height: deviceSize.height * 0.01,
-                      ),
-                      resultContainer(),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "Total Expenses",
-                        style: TextStyle(fontSize: 14),
-                      ),
-                      SizedBox(
-                        height: deviceSize.height * 0.01,
-                      ),
-                      resultContainer(),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: deviceSize.height * 0.015,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "Current Networth",
-                        style: TextStyle(fontSize: 14),
-                      ),
-                      SizedBox(
-                        height: deviceSize.height * 0.01,
-                      ),
-                      resultContainer(),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "Targeted Networth",
-                        style: TextStyle(fontSize: 14),
-                      ),
-                      SizedBox(
-                        height: deviceSize.height * 0.01,
-                      ),
-                      resultContainer(),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: deviceSize.height * 0.01,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  Text(
-                    "Cash Flow",
-                    style: TextStyle(fontSize: 14),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: deviceSize.height * 0.007,
-              ),
-              TextFormField(
-                style: const TextStyle(fontSize: 14),
-                readOnly: true,
-                initialValue: "",
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        width: 2, color: Color(Constants.primary_color)),
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        width: 2, color: Color(Constants.primary_color)),
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: deviceSize.height * 0.02,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "Total Earnings",
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        SizedBox(
+                          height: deviceSize.height * 0.01,
+                        ),
+                        resultContainer(),
+                      ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "Total Expenses",
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        SizedBox(
+                          height: deviceSize.height * 0.01,
+                        ),
+                        resultContainer(),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: deviceSize.height * 0.015,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "Current Networth",
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        SizedBox(
+                          height: deviceSize.height * 0.01,
+                        ),
+                        resultContainer(),
+                      ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "Targeted Networth",
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        SizedBox(
+                          height: deviceSize.height * 0.01,
+                        ),
+                        resultContainer(),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: deviceSize.height * 0.01,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "Cash Flow",
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: deviceSize.height * 0.007,
+                ),
+                TextFormField(
+                  style: const TextStyle(fontSize: 14),
+                  readOnly: true,
+                  initialValue: "",
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          width: 2, color: Color(Constants.primary_color)),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          width: 2, color: Color(Constants.primary_color)),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: deviceSize.height * 0.007,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  Text(
-                    "Stocks",
-                    style: TextStyle(fontSize: 14),
-                  ),
-                ],
-              ),
-              slider(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  Text(
-                    "Real Estate",
-                    style: TextStyle(fontSize: 14),
-                  ),
-                ],
-              ),
-              slider(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  Text(
-                    "Gold",
-                    style: TextStyle(fontSize: 14),
-                  ),
-                ],
-              ),
-              slider(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  Text(
-                    "Fixed Deposit",
-                    style: TextStyle(fontSize: 14),
-                  ),
-                ],
-              ),
-              slider(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  Text(
-                    "New Networth",
-                    style: TextStyle(fontSize: 14),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: deviceSize.height * 0.007,
-              ),
-              TextFormField(
-                style: const TextStyle(fontSize: 14),
-                readOnly: true,
-                initialValue: "",
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        width: 2, color: Color(Constants.primary_color)),
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        width: 2, color: Color(Constants.primary_color)),
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                SizedBox(
+                  height: deviceSize.height * 0.007,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "Stocks",
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ],
+                ),
+                slider(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "Real Estate",
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ],
+                ),
+                slider(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "Gold",
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ],
+                ),
+                slider(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "Fixed Deposit",
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ],
+                ),
+                slider(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "New Networth",
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: deviceSize.height * 0.007,
+                ),
+                TextFormField(
+                  style: const TextStyle(fontSize: 14),
+                  readOnly: true,
+                  initialValue: "",
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          width: 2, color: Color(Constants.primary_color)),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          width: 2, color: Color(Constants.primary_color)),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ));
   }
