@@ -62,7 +62,7 @@ class _InvestmentsState extends State<Investments> {
             child: Column(
               children: [
                 SizedBox(
-                  height: deviceSize.height * 0.03,
+                  height: deviceSize.height * 0.07,
                 ),
                 const Text(
                   "Investments",
@@ -606,13 +606,22 @@ class _InvestmentsState extends State<Investments> {
                           }
                         },
                         child: Container(
-                          height: 30,
-                          width: 200,
-                          color: const Color(0xFF003AB1),
+                          height: 45,
+                          width: 250,
+                          decoration: BoxDecoration(
+                              color: Color(Constants.secondary_color),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                              border: Border.all(
+                                  color: Color(Constants.primary_color),
+                                  width: 1.7)),
                           alignment: Alignment.center,
                           child: const Text(
                             "Get my plan",
-                            style: TextStyle(color: Colors.white, fontSize: 12),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700),
                           ),
                         ),
                       ),

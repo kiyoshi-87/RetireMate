@@ -1,5 +1,6 @@
 const appname = "Retiremate";
 const primary_color = 0xffFFE60A;
+const secondary_color = 0xff1E1E1E;
 const current_earnings = "current_earnings";
 const yearly_increment = "yearly_increment";
 const inflation = "inflation";

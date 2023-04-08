@@ -20,7 +20,7 @@ class _HomepageState extends State<Homepage> {
     final data = (ModalRoute.of(context)!.settings.arguments ??
         ResultData(0, 0, 0, 0, HashMap())) as ResultData;
     // print(data.investments[Constants.stock_investments]);
-
+    User? user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
         appBar: AppBar(title: const Text(Constants.appname)),
         drawer: Drawer(
@@ -30,26 +30,39 @@ class _HomepageState extends State<Homepage> {
             children: [
               DrawerHeader(
                 decoration: const BoxDecoration(
-                  color: Colors.blue,
+                  color: Color(Constants.secondary_color),
                 ),
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(deviceSize.width * 0.01,
-                      deviceSize.height * 0.01, deviceSize.width * 0.01, 0),
+                      deviceSize.height * 0.005, deviceSize.width * 0.01, 0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "My Profile ",
-                            style: TextStyle(color: Colors.white),
+                          Padding(
+                            padding:
+                                EdgeInsets.only(left: deviceSize.width * 0.015),
+                            child: const Text(
+                              "My Profile ",
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
                           SizedBox(
                             height: deviceSize.height * 0.01,
                           ),
                           const CircleAvatar(
-                            radius: 40, // Image radius
+                            radius: 40,
+                            backgroundColor:
+                                Color.fromARGB(255, 75, 75, 75), // Image radius
+                          ),
+                          SizedBox(
+                            height: deviceSize.height * 0.01,
+                          ),
+                          Text(
+                            "${user.email}",
+                            style: TextStyle(color: Colors.white),
                           ),
                         ],
                       ),

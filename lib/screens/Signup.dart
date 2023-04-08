@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:retirement_app/screens/Investments.dart';
+import '../constants.dart' as Constants;
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -33,30 +34,35 @@ class _SignupState extends State<Signup> {
                     style: TextStyle(fontSize: 22),
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(deviceSize.width * 0.1,
-                        deviceSize.width * 0.1, deviceSize.width * 0.1, 0),
+                    padding: EdgeInsets.fromLTRB(deviceSize.width * 0.16,
+                        deviceSize.width * 0.05, deviceSize.width * 0.16, 0),
                     child: Column(
                       children: [
                         TextFormField(
-                          style: const TextStyle(fontSize: 12),
+                          style: const TextStyle(
+                              fontSize: 14, color: Colors.black),
                           decoration: const InputDecoration(
-                              border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(width: 1, color: Colors.grey),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                              ),
-                              labelText: "Email",
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(width: 1, color: Colors.grey),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                              ),
-                              labelStyle: TextStyle(
-                                  fontSize: 10,
-                                  color: Color(0xFF383c3e),
-                                  fontWeight: FontWeight.w500)),
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 1,
+                                  color: Color(Constants.primary_color)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
+                            ),
+                            hintText: "Email",
+                            hintStyle: TextStyle(
+                              color: Color.fromARGB(255, 86, 87, 88),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 1,
+                                  color: Color(Constants.primary_color)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
+                            ),
+                          ),
                           validator: (value) {
                             return EmailValidator.validate(value!)
                                 ? null
@@ -68,25 +74,30 @@ class _SignupState extends State<Signup> {
                           height: deviceSize.height * 0.02,
                         ),
                         TextFormField(
-                          style: const TextStyle(fontSize: 12),
+                          style: const TextStyle(
+                              fontSize: 14, color: Colors.black),
                           decoration: const InputDecoration(
-                              border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(width: 1, color: Colors.grey),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                              ),
-                              labelText: "Username",
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(width: 1, color: Colors.grey),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                              ),
-                              labelStyle: TextStyle(
-                                  fontSize: 10,
-                                  color: Color(0xFF383c3e),
-                                  fontWeight: FontWeight.w500)),
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 1,
+                                  color: Color(Constants.primary_color)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
+                            ),
+                            hintText: "Username",
+                            hintStyle: TextStyle(
+                              color: Color.fromARGB(255, 86, 87, 88),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 1,
+                                  color: Color(Constants.primary_color)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
+                            ),
+                          ),
                           validator: (value) {
                             if (value!.isEmpty) {
                               return "Please enter a valid username";
@@ -99,26 +110,31 @@ class _SignupState extends State<Signup> {
                           height: deviceSize.height * 0.02,
                         ),
                         TextFormField(
-                          style: const TextStyle(fontSize: 12),
+                          style: const TextStyle(
+                              fontSize: 14, color: Colors.black),
                           obscureText: true,
                           decoration: const InputDecoration(
-                              border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(width: 1, color: Colors.grey),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                              ),
-                              labelText: "password",
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(width: 1, color: Colors.grey),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                              ),
-                              labelStyle: TextStyle(
-                                  fontSize: 10,
-                                  color: Color(0xFF383c3e),
-                                  fontWeight: FontWeight.w500)),
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 1,
+                                  color: Color(Constants.primary_color)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
+                            ),
+                            hintText: "Password",
+                            hintStyle: TextStyle(
+                              color: Color.fromARGB(255, 86, 87, 88),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 1,
+                                  color: Color(Constants.primary_color)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
+                            ),
+                          ),
                           validator: (value) {
                             if (value!.toString().length < 6) {
                               return "password length should be greater than 5";
@@ -131,26 +147,31 @@ class _SignupState extends State<Signup> {
                           height: deviceSize.height * 0.02,
                         ),
                         TextFormField(
-                          style: const TextStyle(fontSize: 12),
+                          style: const TextStyle(
+                              fontSize: 14, color: Colors.black),
                           obscureText: true,
                           decoration: const InputDecoration(
-                              border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(width: 1, color: Colors.grey),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                              ),
-                              labelText: "Confirm password",
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(width: 1, color: Colors.grey),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                              ),
-                              labelStyle: TextStyle(
-                                  fontSize: 10,
-                                  color: Color(0xFF383c3e),
-                                  fontWeight: FontWeight.w500)),
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 1,
+                                  color: Color(Constants.primary_color)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
+                            ),
+                            hintText: "Confirm password",
+                            hintStyle: TextStyle(
+                              color: Color.fromARGB(255, 86, 87, 88),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 1,
+                                  color: Color(Constants.primary_color)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
+                            ),
+                          ),
                           validator: (value) {
                             if (value != password.text) {
                               return "password not matching";
@@ -175,14 +196,19 @@ class _SignupState extends State<Signup> {
                             }
                           },
                           child: Container(
-                            height: 30,
+                            height: 45,
                             width: 360,
-                            color: const Color(0xFF003AB1),
                             alignment: Alignment.center,
+                            decoration: const BoxDecoration(
+                                color: Color(Constants.primary_color),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15))),
                             child: const Text(
                               "Continue",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 12),
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600),
                             ),
                           ),
                         ),
@@ -194,7 +220,7 @@ class _SignupState extends State<Signup> {
                           children: [
                             const Text(
                               "Already an user?",
-                              style: TextStyle(fontSize: 10),
+                              style: TextStyle(fontSize: 12),
                             ),
                             SizedBox(
                               width: deviceSize.width * 0.009,
@@ -206,7 +232,7 @@ class _SignupState extends State<Signup> {
                               child: const Text(
                                 "Login",
                                 style: TextStyle(
-                                    fontSize: 10,
+                                    fontSize: 12,
                                     color: Color.fromARGB(255, 4, 198, 241)),
                               ),
                             ),

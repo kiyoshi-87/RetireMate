@@ -10,6 +10,7 @@ import 'package:retirement_app/screens/Signup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import './models/result.dart';
+import './constants.dart' as Constants;
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +26,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Retiremate',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(),
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: Color(Constants.secondary_color),
+      ),
       home: MainPage(),
       onGenerateRoute: RouteGenerator.generateRoute,
     );

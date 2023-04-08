@@ -100,7 +100,7 @@ class _EarningsState extends State<Earnings> {
                       const Text(
                         "Current Earning",
                         style: TextStyle(
-                            fontSize: 11.5, fontWeight: FontWeight.w500),
+                            fontSize: 13, fontWeight: FontWeight.w500),
                       ),
                       SizedBox(
                         height: deviceSize.height * 0.008,
@@ -145,7 +145,7 @@ class _EarningsState extends State<Earnings> {
                             const Text(
                               "Yearly Increment(%)",
                               style: TextStyle(
-                                  fontSize: 11.5, fontWeight: FontWeight.w500),
+                                  fontSize: 13, fontWeight: FontWeight.w500),
                             ),
                             SizedBox(
                               height: deviceSize.height * 0.008,
@@ -187,7 +187,7 @@ class _EarningsState extends State<Earnings> {
                             const Text(
                               "Inflation",
                               style: TextStyle(
-                                  fontSize: 11.5, fontWeight: FontWeight.w500),
+                                  fontSize: 13, fontWeight: FontWeight.w500),
                             ),
                             SizedBox(
                               height: deviceSize.height * 0.008,
@@ -231,7 +231,7 @@ class _EarningsState extends State<Earnings> {
                       const Text(
                         "Monthly Expenses",
                         style: TextStyle(
-                            fontSize: 11.5, fontWeight: FontWeight.w500),
+                            fontSize: 13, fontWeight: FontWeight.w500),
                       ),
                       SizedBox(
                         height: deviceSize.height * 0.008,
@@ -272,9 +272,12 @@ class _EarningsState extends State<Earnings> {
                       Text(
                         "EMIs",
                         style: TextStyle(
-                            fontSize: 11.5, fontWeight: FontWeight.w600),
+                            fontSize: 13, fontWeight: FontWeight.w600),
                       ),
                     ],
+                  ),
+                  SizedBox(
+                    height: deviceSize.height * 0.015,
                   ),
                   Column(
                     mainAxisSize: MainAxisSize.min,
@@ -296,9 +299,12 @@ class _EarningsState extends State<Earnings> {
                               width: 45,
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
-                                color: const Color(0xFF003AB1),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
+                                  color: Color(Constants.secondary_color),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  border: Border.all(
+                                      color: Color(Constants.primary_color),
+                                      width: 1.7)),
                               child: const Text(
                                 "Add",
                                 style: TextStyle(
@@ -316,9 +322,12 @@ class _EarningsState extends State<Earnings> {
                               width: 45,
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
-                                color: const Color(0xFF003AB1),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
+                                  color: Color(Constants.secondary_color),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  border: Border.all(
+                                      color: Color(Constants.primary_color),
+                                      width: 1.7)),
                               child: const Text(
                                 "Del",
                                 style: TextStyle(
@@ -331,7 +340,7 @@ class _EarningsState extends State<Earnings> {
                     ],
                   ),
                   SizedBox(
-                    height: deviceSize.height * 0.01,
+                    height: deviceSize.height * 0.015,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -339,7 +348,7 @@ class _EarningsState extends State<Earnings> {
                       Text(
                         "Loans",
                         style: TextStyle(
-                            fontSize: 11.5, fontWeight: FontWeight.w600),
+                            fontSize: 13, fontWeight: FontWeight.w600),
                       ),
                     ],
                   ),
@@ -355,7 +364,7 @@ class _EarningsState extends State<Earnings> {
                           itemCount: loanDetailsList.length,
                           itemBuilder: (_, index) => loanDetailsList[index]),
                       SizedBox(
-                        height: deviceSize.height * 0.01,
+                        height: deviceSize.height * 0.015,
                       ),
                       Row(
                         children: [
@@ -366,9 +375,12 @@ class _EarningsState extends State<Earnings> {
                               width: 45,
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
-                                color: const Color(0xFF003AB1),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
+                                  color: Color(Constants.secondary_color),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  border: Border.all(
+                                      color: Color(Constants.primary_color),
+                                      width: 1.7)),
                               child: const Text(
                                 "Add",
                                 style: TextStyle(
@@ -386,9 +398,12 @@ class _EarningsState extends State<Earnings> {
                               width: 45,
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
-                                color: const Color(0xFF003AB1),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
+                                  color: Color(Constants.secondary_color),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  border: Border.all(
+                                      color: Color(Constants.primary_color),
+                                      width: 1.7)),
                               child: const Text(
                                 "Del",
                                 style: TextStyle(
@@ -425,13 +440,21 @@ class _EarningsState extends State<Earnings> {
                       }
                     },
                     child: Container(
-                      height: 30,
-                      width: 360,
-                      color: const Color(0xFF003AB1),
+                      height: 45,
+                      width: 300,
+                      decoration: BoxDecoration(
+                          color: Color(Constants.secondary_color),
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          border: Border.all(
+                              color: Color(Constants.primary_color),
+                              width: 1.7)),
                       alignment: Alignment.center,
                       child: const Text(
                         "Continue",
-                        style: TextStyle(color: Colors.white, fontSize: 12),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w700),
                       ),
                     ),
                   ),
@@ -466,7 +489,7 @@ class Emidetails extends StatelessWidget {
             children: [
               const Text(
                 "Amount",
-                style: TextStyle(fontSize: 11.5, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 10, fontWeight: FontWeight.w300),
               ),
               SizedBox(
                 height: deviceSize.height * 0.008,
@@ -501,7 +524,7 @@ class Emidetails extends StatelessWidget {
             children: [
               const Text(
                 "Months",
-                style: TextStyle(fontSize: 11.5, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 10, fontWeight: FontWeight.w300),
               ),
               SizedBox(
                 height: deviceSize.height * 0.008,
@@ -553,7 +576,7 @@ class LoanDetails extends StatelessWidget {
             children: [
               const Text(
                 "Amount",
-                style: TextStyle(fontSize: 11.5, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 10, fontWeight: FontWeight.w300),
               ),
               SizedBox(
                 height: deviceSize.height * 0.008,
@@ -588,7 +611,7 @@ class LoanDetails extends StatelessWidget {
             children: [
               const Text(
                 "Years",
-                style: TextStyle(fontSize: 11.5, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 10, fontWeight: FontWeight.w300),
               ),
               SizedBox(
                 height: deviceSize.height * 0.008,
@@ -623,7 +646,7 @@ class LoanDetails extends StatelessWidget {
             children: [
               const Text(
                 "Interest",
-                style: TextStyle(fontSize: 11.5, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 10, fontWeight: FontWeight.w300),
               ),
               SizedBox(
                 height: deviceSize.height * 0.008,
