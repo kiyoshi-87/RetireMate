@@ -3,11 +3,16 @@ name: Flutter CI/CD Workflow
 on:
   pull_request:
     branches: [main]
+    types: [opened, synchronize]
 
 jobs:
   build:
     name: Build and Test
     runs-on: ubuntu-latest
+
+    env:
+      FLUTTER_HOME: /opt/hostedtoolcache/flutter/2.2.1-stable/x64
+      PATH: ${{ env.PATH }}:${{ env.FLUTTER_HOME }}/bin:${{ env.FLUTTER_HOME }}/bin/cache/dart-sdk/bin
 
     steps:
       - name: Checkout code
