@@ -10,13 +10,9 @@ jobs:
     name: Build and Test
     runs-on: ubuntu-latest
 
-    env:
-      FLUTTER_HOME: /opt/hostedtoolcache/flutter/2.2.1-stable/x64
-      PATH: ${{ env.PATH }}:${{ env.FLUTTER_HOME }}/bin:${{ env.FLUTTER_HOME }}/bin/cache/dart-sdk/bin
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v1
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v1.3.2
