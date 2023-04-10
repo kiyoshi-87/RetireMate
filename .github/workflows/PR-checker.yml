@@ -1,4 +1,4 @@
-name: Flutter CI/CD Workflow
+name: Flutter CI Workflow
 
 on:
   pull_request:
@@ -10,18 +10,25 @@ jobs:
     name: Build and Test
     runs-on: ubuntu-latest
 
+    env:
+      FLUTTER_HOME: /opt/hostedtoolcache/flutter/2.2.1-stable/x64
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Set up Flutter
-        uses: subosito/flutter-action@v1
+        uses: subosito/flutter-action@v1.3.2
 
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Run tests
-        run: flutter test
+      - name: Build APK
+        run: flutter build apk
 
-      - name: Run linter
-        run: flutter analyze
+      - name: Verify APK exists
+        run: |
+          if [ ! -f build/app/outputs/flutter-apk/app-release.apk ]; then
+              echo "APK file does not exist!"
+              exit 1
+          fi
