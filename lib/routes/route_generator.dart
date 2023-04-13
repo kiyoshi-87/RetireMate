@@ -32,7 +32,10 @@ class RouteGenerator {
       case '/earningsandexpenses':
         return MaterialPageRoute(builder: (_) => Earnings());
       case '/':
-        return MaterialPageRoute(builder: (_) => Homepage());
+        return MaterialPageRoute(
+            builder: (_) => Homepage(
+                  resultData: null,
+                ));
       default:
         return _errorRoute();
     }

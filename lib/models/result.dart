@@ -1,9 +1,10 @@
 class ResultData {
-  int totalEarnings;
-  int totalExpenses;
-  int currentNetworth;
-  int cashflow;
+  double totalEarnings;
+  double totalExpenses;
+  double estimatedNetworth;
+  double cashflow;
   Map<String, double> investments;
-  ResultData(this.cashflow, this.currentNetworth, this.totalEarnings,
-      this.totalExpenses, this.investments) {}
+  Map<String, String> metrics;
+  ResultData(this.cashflow, this.estimatedNetworth, this.totalEarnings,
+      this.totalExpenses, this.investments, this.metrics) {}
 }

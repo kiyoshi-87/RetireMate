@@ -20,21 +20,23 @@ class Calculation {
     var retirementTime = investments[Constants.time_for_retirement] ?? 0.0;
     //final data calculations
     var totalearnings =
-        totalEarnings(currentEarnings, yearlyIncrement, retirementTime).floor();
+        totalEarnings(currentEarnings, yearlyIncrement, retirementTime);
     var totalexpenses =
-        totalExpenses(monthlyExpenses, inflation, emi, loan, retirementTime)
-            .floor();
+        totalExpenses(monthlyExpenses, inflation, emi, loan, retirementTime);
     var totalinvestments =
-        totalInvestments(investments, metrics, retirementTime).floor();
-    var currentNetworth = totalearnings + totalinvestments - totalexpenses;
-    var cashflow = 0;
+        totalInvestments(investments, metrics, retirementTime);
+    var estimatedNetworth = totalearnings + totalinvestments - totalexpenses;
+    var cashflow =
+        totalCashflow(totalearnings - totalexpenses, investments, metrics);
+    print(cashflow);
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (_) => Homepage(),
-            settings: RouteSettings(
-                arguments: ResultData(cashflow, currentNetworth, totalearnings,
-                    totalexpenses, investments))));
+          builder: (_) => Homepage(
+            resultData: ResultData(cashflow, estimatedNetworth, totalearnings,
+                totalexpenses, investments, metrics),
+          ),
+        ));
   }
 
   double totalEarnings(
@@ -104,6 +106,47 @@ class Calculation {
         totalGold * pow((1 + (goldReturns / 100)), R) +
         fixedDeposits * pow((1 + (fdReturns / 100)), R);
 
+    return ans;
+  }
+
+  double totalCashflow(
+    var cashflow,
+    var investments,
+    var metrics,
+  ) {
+    double ans = 0.0;
+    var stocks = investments[Constants.stock_investments];
+    var gold = investments[Constants.gold];
+    var realEstate = investments[Constants.real_estate_worth];
+    var fixedDeposits = investments[Constants.fixed_deposits];
+    var fdReturns = investments[Constants.interest];
+
+    //api call to get the stock index returns(YOY)
+    var stockReturns = 12.0;
+
+    //api call to get the real estate returns based on location
+    var realestateReturns = 10.0;
+
+    // api call to get the gold returns
+    var goldReturns = 8.0;
+
+    //api call to get gold per gram rate
+    var goldPerGram = 6062.0;
+
+    //api call to get bank interest
+    var bankinterest = 4.0;
+    //conversion of gold to gm
+    if (metrics[Constants.metric] == "mg")
+      gold = gold / 1000.0;
+    else if (metrics[Constants.metric] == "kg") gold = gold * 1000;
+
+    var totalGold = gold * goldPerGram;
+
+    ans = cashflow * (1 + (bankinterest / 100.0)) +
+        stocks * (1 + (stockReturns / 100.0)) +
+        totalGold * (1 + (goldReturns / 100.0)) +
+        realEstate * (1 + (realestateReturns / 100.0)) +
+        fixedDeposits * (1 + (fdReturns / 100.0));
     return ans;
   }
 }

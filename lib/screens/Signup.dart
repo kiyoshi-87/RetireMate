@@ -255,8 +255,8 @@ class _SignupState extends State<Signup> {
         email: email,
         password: password,
       );
-      Navigator.of(context)
-          .pushNamedAndRemoveUntil("/", (Route<dynamic> route) => false);
+      Navigator.of(context).pushNamedAndRemoveUntil(
+          "/earningsandexpenses", (Route<dynamic> route) => false);
       // Navigator.of(context).pushNamed("/investments");
     } on FirebaseAuthException catch (err) {
       if (err.code == 'email-already-in-use') {

@@ -54,7 +54,9 @@ class MainPage extends StatelessWidget {
               child: Text("Something went wrong"),
             );
           } else if (snapshot.hasData) {
-            return Homepage();
+            return Homepage(
+              resultData: null,
+            );
           } else {
             return Signup();
           }

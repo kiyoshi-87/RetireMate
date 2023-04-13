@@ -72,22 +72,19 @@ class _EarningsState extends State<Earnings> {
   Widget build(BuildContext context) {
     var deviceSize = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        title: Padding(
+          padding: EdgeInsets.only(left: deviceSize.width * 0.07),
+          child: const Text("Earnings and Expenses"),
+        ),
+        leading: BackButton(onPressed: () {
+          Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
+        }),
+      ),
       body: Form(
         key: _formkey,
         child: ListView(
           children: [
-            SizedBox(
-              height: deviceSize.height * 0.03,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  "Earnings and Expenses",
-                  style: TextStyle(fontSize: 19, fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),
             Padding(
               padding: EdgeInsets.fromLTRB(deviceSize.width * 0.1,
                   deviceSize.width * 0.05, deviceSize.width * 0.1, 0),
