@@ -1,4 +1,6 @@
 import 'dart:collection';
+import 'package:retirement_app/screens/HomePage.dart';
+
 import '../constants.dart' as Constants;
 import 'package:flutter/material.dart';
 import '../models/earningsdata.dart';
@@ -62,7 +64,10 @@ class _InvestmentsState extends State<Investments> {
         ),
         leading: BackButton(
           onPressed: () {
-            Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (_) => Homepage(resultData: null)),
+                (route) => false);
           },
         ),
       ),
@@ -163,7 +168,14 @@ class _InvestmentsState extends State<Investments> {
                                             (String value) {
                                       return DropdownMenuItem<String>(
                                         value: value,
-                                        child: Text(value),
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                              left: deviceSize.width * 0.03),
+                                          child: Text(
+                                            value,
+                                            style: TextStyle(fontSize: 12),
+                                          ),
+                                        ),
                                       );
                                     }).toList(),
                                   ),
@@ -258,7 +270,11 @@ class _InvestmentsState extends State<Investments> {
                                             (String value) {
                                       return DropdownMenuItem<String>(
                                         value: value,
-                                        child: Text(value),
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                              left: deviceSize.width * 0.07),
+                                          child: Text(value),
+                                        ),
                                       );
                                     }).toList(),
                                   ),
@@ -352,7 +368,11 @@ class _InvestmentsState extends State<Investments> {
                                         (String value) {
                                       return DropdownMenuItem<String>(
                                         value: value,
-                                        child: Text(value),
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                              left: deviceSize.width * 0.06),
+                                          child: Text(value),
+                                        ),
                                       );
                                     }).toList(),
                                   ),
@@ -415,7 +435,7 @@ class _InvestmentsState extends State<Investments> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Text(
-                                  "Interests",
+                                  "Interests(%)",
                                   style: TextStyle(
                                       fontSize: 11.5,
                                       fontWeight: FontWeight.w500),
@@ -427,6 +447,7 @@ class _InvestmentsState extends State<Investments> {
                                     style: const TextStyle(fontSize: 12),
                                     controller: interestController,
                                     keyboardType: TextInputType.number,
+                                    textAlign: TextAlign.center,
                                     decoration: const InputDecoration(
                                       border: OutlineInputBorder(
                                         borderSide: BorderSide(

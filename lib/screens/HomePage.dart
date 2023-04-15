@@ -49,73 +49,82 @@ class _HomepageState extends State<Homepage> {
       try {
         var response = await BaseClient().get(email!);
         var userData = convert.jsonDecode(response) as Map<String, dynamic>;
-        cashflow = double.parse(userData["cashflow"]);
-        totalEarnings = double.parse(userData["total_earnings"]);
-        totalExpenses = double.parse(userData["total_expenses"]);
-        estimatedNetWorth = double.parse(userData["estimated_networth"]);
+        cashflow_rounded = userData["cashflow"];
+        totalEarnings_rounded = userData["total_earnings"];
+        totalExpenses_rounded = userData["total_expenses"];
+        estimatedNetWorth_rounded = userData["estimated_networth"];
         stocks = double.parse(userData["stocks"]);
         realestate = double.parse(userData["real_estate"]);
         gold = double.parse(userData["gold"]);
-        fixedDeposits = double.parse(userData["fixedDeposits"]);
-        targetNetworth = double.parse(userData["targeted_networth"]);
+        fixedDeposits = double.parse(userData["fd"]);
+        targetednetworth_rounded = userData["targeted_networth"];
         fd_interest = double.parse(userData["fd_interests"]);
+        timetoRetire = double.parse(userData["time_to_retire"]);
+
+        cashflow = double.parse(cashflow_rounded) * lakhs;
+        totalEarnings = double.parse(totalEarnings_rounded) * lakhs;
+        totalExpenses = double.parse(totalExpenses_rounded) * lakhs;
+        estimatedNetWorth = double.parse(estimatedNetWorth_rounded) * lakhs;
+        targetNetworth = double.parse(targetednetworth_rounded) * lakhs;
+
         setState(() {
           isLoading = false;
         });
       } catch (e) {
-        print(e);
+        print("error from get request:${e}");
         setState(() {
           isLoading = false;
         });
       }
     } else {
-      totalEarnings = ((data.totalEarnings) / lakhs);
-      totalExpenses = ((data.totalExpenses) / lakhs);
-      estimatedNetWorth = ((data.estimatedNetworth) / lakhs);
-      cashflow = ((data.cashflow) / lakhs);
+      totalEarnings = data.totalEarnings;
+      totalExpenses = data.totalExpenses;
+      estimatedNetWorth = data.estimatedNetworth;
+      cashflow = data.cashflow;
       stocks = (data.investments[Constants.stock_investments] ?? 0.0);
       gold = (data.investments[Constants.gold] ?? 0.0);
       realestate = (data.investments[Constants.real_estate_worth] ?? 0.0);
-      targetNetworth =
-          (data.investments[Constants.targeted_networth] ?? 0.0) / lakhs;
+      targetNetworth = data.investments[Constants.targeted_networth] ?? 0.0;
       fixedDeposits = data.investments[Constants.fixed_deposits] ?? 0.0;
       timetoRetire = data.investments[Constants.time_for_retirement];
       fd_interest = data.investments[Constants.interest];
 
-      totalEarnings_rounded = totalEarnings.toStringAsFixed(2);
-      totalExpenses_rounded = totalExpenses.toStringAsFixed(2);
-      estimatedNetWorth_rounded = estimatedNetWorth.toStringAsFixed(2);
-      cashflow_rounded = cashflow.toStringAsFixed(2);
-      targetednetworth_rounded = targetNetworth.toStringAsFixed(2);
-      print("target" + targetednetworth_rounded);
+      //converting the doubles to string and rounding the numbers to 2 decimal places
+      totalEarnings_rounded = (totalEarnings / lakhs).toStringAsFixed(2);
+      totalExpenses_rounded = (totalExpenses / lakhs).toStringAsFixed(2);
+      estimatedNetWorth_rounded =
+          (estimatedNetWorth / lakhs).toStringAsFixed(2);
+      cashflow_rounded = (cashflow / lakhs).toStringAsFixed(2);
+      targetednetworth_rounded = (targetNetworth / lakhs).toStringAsFixed(2);
       //adjusting the gold metric
       if (data.metrics[Constants.metric] == "mg") {
-        gold = gold / 1000.0;
+        gold = (gold / 1000.0);
       } else if (data.metrics[Constants.metric] == "kg") {
-        gold = gold * 1000.0;
+        gold = (gold * 1000.0);
       }
 
-      var userinfo = Userinfo(
-        email: email!,
-        total_earnings: totalEarnings_rounded,
-        total_expenses: totalExpenses_rounded,
-        estimated_networth: estimatedNetWorth_rounded,
-        targeted_networth: targetednetworth_rounded,
-        cashflow: cashflow_rounded,
-        stocks: stocks.toString(),
-        real_estate: realestate.toString(),
-        gold: gold.toString(),
-        fd: fixedDeposits.toString(),
-        fd_interests: fd_interest.toString(),
-      );
+      var bodydata = {
+        "email": email,
+        "total_earnings": totalEarnings_rounded,
+        "total_expenses": totalExpenses_rounded,
+        "estimated_networth": estimatedNetWorth_rounded,
+        "targeted_networth": targetednetworth_rounded,
+        "cashflow": cashflow_rounded,
+        "stocks": stocks.toString(),
+        "real_estate": realestate.toString(),
+        "gold": gold.toString(),
+        "fd": fixedDeposits.toString(),
+        "fd_interests": fd_interest.toString(),
+        "time_to_retire": timetoRetire.toString()
+      };
+      // print(bodydata);
       try {
-        var response = await BaseClient().post(email, userinfo.toJson());
-        print(response);
+        var response = await BaseClient().post(email!, bodydata);
         setState(() {
           isLoading = false;
         });
       } catch (e) {
-        print(e);
+        print("error from post request ${e}");
         setState(() {
           isLoading = false;
         });
@@ -136,6 +145,28 @@ class _HomepageState extends State<Homepage> {
     if (user != null) {
       email = user?.email!;
     }
+    //alert dialog
+    var alert = AlertDialog(
+      title: const Text('Logout'),
+      content: SingleChildScrollView(
+        child: ListBody(
+          children: const <Widget>[
+            Text('Are you sure you want to logout?'),
+          ],
+        ),
+      ),
+      actions: <Widget>[
+        TextButton(
+          child: const Text('Yes'),
+          onPressed: () {
+            FirebaseAuth.instance.signOut();
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                "/login", (Route<dynamic> route) => false);
+          },
+        ),
+      ],
+    );
+
     //text controllers
     TextEditingController cashflowController = TextEditingController();
     cashflowController.text = "${cashflow_rounded} lacs";
@@ -205,9 +236,11 @@ class _HomepageState extends State<Homepage> {
               ListTile(
                 title: const Text('Logout'),
                 onTap: () {
-                  FirebaseAuth.instance.signOut();
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                      "/login", (Route<dynamic> route) => false);
+                  showDialog(
+                      context: context,
+                      builder: (_) {
+                        return alert;
+                      });
                 },
               ),
             ],
@@ -319,7 +352,7 @@ class _HomepageState extends State<Homepage> {
                       ),
                       TextFormField(
                         style: const TextStyle(
-                            fontSize: 25,
+                            fontSize: 18,
                             color: Colors.white,
                             fontStyle: FontStyle.italic,
                             fontWeight: FontWeight.w500),
@@ -453,10 +486,8 @@ class _HomepageState extends State<Homepage> {
                         ),
                         child: Slider(
                           value: gold,
-                          max: 100,
-                          divisions: 100,
-                          // activeColor: Color(Constants.primary_color),
-                          // thumbColor: Color(Constants.primary_color),
+                          max: 1000,
+                          divisions: 200,
                           label: gold.round().toString(),
                           onChanged: (double value) {
                             setState(() {
@@ -498,8 +529,6 @@ class _HomepageState extends State<Homepage> {
                           value: fixedDeposits,
                           max: 10000000,
                           divisions: 1000,
-                          // activeColor: Color(Constants.primary_color),
-                          // thumbColor: Color(Constants.primary_color),
                           label: fixedDeposits.round().toString(),
                           onChanged: (double value) {
                             setState(() {
@@ -535,7 +564,7 @@ class _HomepageState extends State<Homepage> {
                       ),
                       TextFormField(
                         style: const TextStyle(
-                            fontSize: 22,
+                            fontSize: 18,
                             fontStyle: FontStyle.italic,
                             fontWeight: FontWeight.w600),
                         readOnly: true,
@@ -598,8 +627,6 @@ class _sliderState extends State<slider> {
               value: val,
               max: 10000000,
               divisions: 1000,
-              // activeColor: Color(Constants.primary_color),
-              // thumbColor: Color(Constants.primary_color),
               label: val.round().toString(),
               onChanged: (double value) {
                 setState(() {
@@ -652,10 +679,8 @@ class _slidergoldState extends State<slidergold> {
             ),
             child: Slider(
               value: val,
-              max: 100,
-              divisions: 100,
-              // activeColor: Color(Constants.primary_color),
-              // thumbColor: Color(Constants.primary_color),
+              max: 1000,
+              divisions: 200,
               label: val.round().toString(),
               onChanged: (double value) {
                 setState(() {
@@ -708,10 +733,11 @@ class _resultContainerState extends State<resultContainer> {
             )),
         alignment: Alignment.center,
         child: Text(
-          "${data} lacs",
+          "${data} lakhs",
+          textAlign: TextAlign.center,
           style: const TextStyle(
               color: Colors.white,
-              fontSize: 25,
+              fontSize: 18,
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.w600),
         ),
@@ -750,6 +776,10 @@ double calculateNewNetworth(
       realestate * pow((1 + (realestateReturns / 100)), R) +
       totalGold * pow((1 + (goldReturns / 100)), R) +
       fd * pow((1 + (fdReturns / 100)), R);
+  print("R" + R.toString());
+  print("investments ${totalinvestments}");
+  print("earnings" + totalEarnings.toString());
+  print("expenses" + totalExpenses.toString());
   ans = totalEarnings - totalExpenses + totalinvestments;
   return ans;
 }

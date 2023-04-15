@@ -2,6 +2,7 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import '../constants.dart' as Constants;
 import '../models/earningsdata.dart';
+import 'HomePage.dart';
 
 class Earnings extends StatefulWidget {
   const Earnings({super.key});
@@ -78,7 +79,10 @@ class _EarningsState extends State<Earnings> {
           child: const Text("Earnings and Expenses"),
         ),
         leading: BackButton(onPressed: () {
-          Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (_) => Homepage(resultData: null)),
+              (route) => false);
         }),
       ),
       body: Form(

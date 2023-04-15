@@ -10,6 +10,7 @@ import 'package:retirement_app/screens/Signup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import './models/result.dart';
+import './utils/Splashscreen.dart';
 import './constants.dart' as Constants;
 
 Future main() async {
@@ -30,38 +31,38 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         primaryColor: Color(Constants.secondary_color),
       ),
-      home: MainPage(),
+      home: Splashscreen(),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
 
-class MainPage extends StatelessWidget {
-  const MainPage({super.key});
+// class MainPage extends StatelessWidget {
+//   const MainPage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: StreamBuilder<User?>(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (snapshot.hasError) {
-            return const Center(
-              child: Text("Something went wrong"),
-            );
-          } else if (snapshot.hasData) {
-            return Homepage(
-              resultData: null,
-            );
-          } else {
-            return Signup();
-          }
-        },
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: StreamBuilder<User?>(
+//         stream: FirebaseAuth.instance.authStateChanges(),
+//         builder: (context, snapshot) {
+//           if (snapshot.connectionState == ConnectionState.waiting) {
+//             return const Center(
+//               child: CircularProgressIndicator(),
+//             );
+//           } else if (snapshot.hasError) {
+//             return const Center(
+//               child: Text("Something went wrong"),
+//             );
+//           } else if (snapshot.hasData) {
+//             return Homepage(
+//               resultData: null,
+//             );
+//           } else {
+//             return Signup();
+//           }
+//         },
+//       ),
+//     );
+//   }
+// }

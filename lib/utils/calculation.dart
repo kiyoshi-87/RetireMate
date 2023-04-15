@@ -28,15 +28,18 @@ class Calculation {
     var estimatedNetworth = totalearnings + totalinvestments - totalexpenses;
     var cashflow =
         totalCashflow(totalearnings - totalexpenses, investments, metrics);
-    print(cashflow);
-    Navigator.push(
+    print("total investments ${totalinvestments}");
+    print("total earnings ${totalearnings}");
+    print("total expenses ${totalexpenses}");
+    Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
           builder: (_) => Homepage(
             resultData: ResultData(cashflow, estimatedNetworth, totalearnings,
                 totalexpenses, investments, metrics),
           ),
-        ));
+        ),
+        (route) => false);
   }
 
   double totalEarnings(
@@ -96,8 +99,8 @@ class Calculation {
 
     //conversion of gold to gm
     if (metrics[Constants.metric] == "mg")
-      gold = gold / 1000.0;
-    else if (metrics[Constants.metric] == "kg") gold = gold * 1000;
+      gold = (gold / 1000.0);
+    else if (metrics[Constants.metric] == "kg") gold = (gold * 1000);
 
     var totalGold = gold * goldPerGram;
 
