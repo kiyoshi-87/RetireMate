@@ -99,7 +99,7 @@ class _EarningsState extends State<Earnings> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        "Current Earning",
+                        "Annual Income",
                         style: TextStyle(
                             fontSize: 13, fontWeight: FontWeight.w500),
                       ),
@@ -186,7 +186,7 @@ class _EarningsState extends State<Earnings> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text(
-                              "Inflation",
+                              "Inflation(%)",
                               style: TextStyle(
                                   fontSize: 13, fontWeight: FontWeight.w500),
                             ),
@@ -297,7 +297,7 @@ class _EarningsState extends State<Earnings> {
                             onTap: addDynamicEmi,
                             child: Container(
                               height: 25,
-                              width: 45,
+                              width: 30,
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                   color: Color(Constants.secondary_color),
@@ -307,9 +307,9 @@ class _EarningsState extends State<Earnings> {
                                       color: Color(Constants.primary_color),
                                       width: 1.7)),
                               child: const Text(
-                                "Add",
+                                "+",
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: 14),
+                                    color: Colors.white, fontSize: 16),
                               ),
                             ),
                           ),
@@ -320,7 +320,7 @@ class _EarningsState extends State<Earnings> {
                             onTap: delDynamicEmi,
                             child: Container(
                               height: 25,
-                              width: 45,
+                              width: 30,
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                   color: Color(Constants.secondary_color),
@@ -330,9 +330,9 @@ class _EarningsState extends State<Earnings> {
                                       color: Color(Constants.primary_color),
                                       width: 1.7)),
                               child: const Text(
-                                "Del",
+                                "-",
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: 14),
+                                    color: Colors.white, fontSize: 16),
                               ),
                             ),
                           ),
@@ -373,7 +373,7 @@ class _EarningsState extends State<Earnings> {
                             onTap: addDynamicLoan,
                             child: Container(
                               height: 25,
-                              width: 45,
+                              width: 30,
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                   color: Color(Constants.secondary_color),
@@ -383,9 +383,9 @@ class _EarningsState extends State<Earnings> {
                                       color: Color(Constants.primary_color),
                                       width: 1.7)),
                               child: const Text(
-                                "Add",
+                                "+",
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: 14),
+                                    color: Colors.white, fontSize: 16),
                               ),
                             ),
                           ),
@@ -396,7 +396,7 @@ class _EarningsState extends State<Earnings> {
                             onTap: delDynamicLoan,
                             child: Container(
                               height: 25,
-                              width: 45,
+                              width: 30,
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                   color: Color(Constants.secondary_color),
@@ -406,9 +406,9 @@ class _EarningsState extends State<Earnings> {
                                       color: Color(Constants.primary_color),
                                       width: 1.7)),
                               child: const Text(
-                                "Del",
+                                "-",
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: 14),
+                                    color: Colors.white, fontSize: 16),
                               ),
                             ),
                           ),

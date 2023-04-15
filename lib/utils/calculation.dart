@@ -145,11 +145,11 @@ class Calculation {
 
     var totalGold = gold * goldPerGram;
 
-    ans = cashflow * (1 + (bankinterest / 100.0)) +
-        stocks * (1 + (stockReturns / 100.0)) +
-        totalGold * (1 + (goldReturns / 100.0)) +
-        realEstate * (1 + (realestateReturns / 100.0)) +
-        fixedDeposits * (1 + (fdReturns / 100.0));
+    ans = cashflow * ((bankinterest / 100.0)) +
+        stocks * ((stockReturns / 100.0)) +
+        totalGold * ((goldReturns / 100.0)) +
+        realEstate * ((realestateReturns / 100.0)) +
+        fixedDeposits * ((fdReturns / 100.0));
     return ans;
   }
 }

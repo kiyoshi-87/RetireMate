@@ -7,6 +7,7 @@ import '../constants.dart' as Constants;
 import '../provider/base_client.dart';
 import 'dart:convert' as convert;
 import '../models/userinfo.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Homepage extends StatefulWidget {
   final ResultData? resultData;
@@ -145,6 +146,16 @@ class _HomepageState extends State<Homepage> {
     if (user != null) {
       email = user?.email!;
     }
+    // info icon dialog
+    AlertDialog showInfo(String info) {
+      return AlertDialog(
+        title: Text(
+          info,
+          style: TextStyle(fontSize: 14.5),
+        ),
+      );
+    }
+
     //alert dialog
     var alert = AlertDialog(
       title: const Text('Logout'),
@@ -196,7 +207,7 @@ class _HomepageState extends State<Homepage> {
                         padding:
                             EdgeInsets.only(left: deviceSize.width * 0.015),
                         child: const Text(
-                          "My Profile ",
+                          "My Profile",
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -339,11 +350,25 @@ class _HomepageState extends State<Homepage> {
                         height: deviceSize.height * 0.01,
                       ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: const [
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
                           Text(
                             "Cash Flow",
                             style: TextStyle(fontSize: 14),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (_) {
+                                    return showInfo(
+                                        "Cash flow after retirement");
+                                  });
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.only(right: 13.0),
+                              child: SvgPicture.asset("assets/info_icon.svg"),
+                            ),
                           ),
                         ],
                       ),
@@ -551,11 +576,25 @@ class _HomepageState extends State<Homepage> {
                         ],
                       ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: const [
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
                           Text(
                             "New Net worth",
                             style: TextStyle(fontSize: 14),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (_) {
+                                    return showInfo(
+                                        "Net worth of the user after retirement");
+                                  });
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.only(right: 13.0),
+                              child: SvgPicture.asset("assets/info_icon.svg"),
+                            ),
                           ),
                         ],
                       ),

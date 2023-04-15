@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:retirement_app/screens/HomePage.dart';
 import '../constants.dart' as Constants;
 
 class Login extends StatefulWidget {
@@ -175,8 +176,9 @@ class _LoginState extends State<Login> {
     try {
       UserCredential? credentials = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-      Navigator.of(context)
-          .pushNamedAndRemoveUntil("/", (Route<dynamic> route) => false);
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (_) => Homepage(resultData: null)),
+          (Route<dynamic> route) => false);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         const snackbar = SnackBar(content: Text("Invalid email"));

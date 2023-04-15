@@ -1,6 +1,7 @@
 import 'dart:collection';
 import 'package:retirement_app/screens/HomePage.dart';
 
+import 'package:flutter_svg/flutter_svg.dart';
 import '../constants.dart' as Constants;
 import 'package:flutter/material.dart';
 import '../models/earningsdata.dart';
@@ -52,6 +53,20 @@ class _InvestmentsState extends State<Investments> {
   // metrics[Constants.index] = "sensex";
   // metrics[Constants.location] = "in";
   // metrics[Constants.metric] = "mg";
+
+  //pop up dialog
+  AlertDialog showInfo(String info) {
+    return AlertDialog(
+      title: Text(
+        info,
+        style: TextStyle(fontSize: 14.5),
+      ),
+    );
+  }
+
+  var alert = AlertDialog(
+    title: const Text('Logout'),
+  );
   @override
   Widget build(BuildContext context) {
     var deviceSize = MediaQuery.of(context).size;
@@ -93,11 +108,32 @@ class _InvestmentsState extends State<Investments> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
-                                  "Stock Investments",
-                                  style: TextStyle(
-                                      fontSize: 11.5,
-                                      fontWeight: FontWeight.w500),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text(
+                                      "Stock Investments",
+                                      style: TextStyle(
+                                          fontSize: 11.5,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        showDialog(
+                                            context: context,
+                                            builder: (_) {
+                                              return showInfo(
+                                                  "Total value of stock investments in a respective index");
+                                            });
+                                      },
+                                      child: Padding(
+                                        padding: EdgeInsets.only(right: 9.0),
+                                        child: SvgPicture.asset(
+                                            "assets/info_icon.svg"),
+                                      ),
+                                    )
+                                  ],
                                 ),
                                 SizedBox(
                                   height: deviceSize.height * 0.008,
@@ -196,11 +232,32 @@ class _InvestmentsState extends State<Investments> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
-                                  "Real Estate Worth",
-                                  style: TextStyle(
-                                      fontSize: 11.5,
-                                      fontWeight: FontWeight.w500),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text(
+                                      "Real Estate Worth",
+                                      style: TextStyle(
+                                          fontSize: 11.5,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        showDialog(
+                                            context: context,
+                                            builder: (_) {
+                                              return showInfo(
+                                                  "Total value of real estate holdings");
+                                            });
+                                      },
+                                      child: Padding(
+                                        padding: EdgeInsets.only(right: 9.0),
+                                        child: SvgPicture.asset(
+                                            "assets/info_icon.svg"),
+                                      ),
+                                    )
+                                  ],
                                 ),
                                 SizedBox(
                                   height: deviceSize.height * 0.008,
@@ -295,11 +352,32 @@ class _InvestmentsState extends State<Investments> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
-                                  "Gold",
-                                  style: TextStyle(
-                                      fontSize: 11.5,
-                                      fontWeight: FontWeight.w500),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text(
+                                      "Gold",
+                                      style: TextStyle(
+                                          fontSize: 11.5,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        showDialog(
+                                            context: context,
+                                            builder: (_) {
+                                              return showInfo(
+                                                  "Total amount of gold owned");
+                                            });
+                                      },
+                                      child: Padding(
+                                        padding: EdgeInsets.only(right: 10.0),
+                                        child: SvgPicture.asset(
+                                            "assets/info_icon.svg"),
+                                      ),
+                                    )
+                                  ],
                                 ),
                                 SizedBox(
                                   height: deviceSize.height * 0.008,
@@ -393,11 +471,32 @@ class _InvestmentsState extends State<Investments> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
-                                  "fixed Deposits",
-                                  style: TextStyle(
-                                      fontSize: 11.5,
-                                      fontWeight: FontWeight.w500),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text(
+                                      "fixed Deposits",
+                                      style: TextStyle(
+                                          fontSize: 11.5,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        showDialog(
+                                            context: context,
+                                            builder: (_) {
+                                              return showInfo(
+                                                  "Total fixed deposits amount with respective interest");
+                                            });
+                                      },
+                                      child: Padding(
+                                        padding: EdgeInsets.only(right: 10.0),
+                                        child: SvgPicture.asset(
+                                            "assets/info_icon.svg"),
+                                      ),
+                                    )
+                                  ],
                                 ),
                                 SizedBox(
                                   height: deviceSize.height * 0.008,
@@ -484,10 +583,31 @@ class _InvestmentsState extends State<Investments> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "Current Cashflow",
-                            style: TextStyle(
-                                fontSize: 11.5, fontWeight: FontWeight.w500),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                "Current Cashflow",
+                                style: TextStyle(
+                                    fontSize: 11.5,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) {
+                                        return showInfo(
+                                            "Target cashflow per year after retirement");
+                                      });
+                                },
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: 10.0),
+                                  child:
+                                      SvgPicture.asset("assets/info_icon.svg"),
+                                ),
+                              )
+                            ],
                           ),
                           SizedBox(
                             height: deviceSize.height * 0.008,
@@ -518,13 +638,37 @@ class _InvestmentsState extends State<Investments> {
                               }),
                         ],
                       ),
+                      SizedBox(
+                        height: deviceSize.height * 0.01,
+                      ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "Targeted networth",
-                            style: TextStyle(
-                                fontSize: 11.5, fontWeight: FontWeight.w500),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                "Targeted networth",
+                                style: TextStyle(
+                                    fontSize: 11.5,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) {
+                                        return showInfo(
+                                            "Target net worth after retirement");
+                                      });
+                                },
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: 10.0),
+                                  child:
+                                      SvgPicture.asset("assets/info_icon.svg"),
+                                ),
+                              )
+                            ],
                           ),
                           SizedBox(
                             height: deviceSize.height * 0.008,
@@ -555,13 +699,37 @@ class _InvestmentsState extends State<Investments> {
                               }),
                         ],
                       ),
+                      SizedBox(
+                        height: deviceSize.height * 0.01,
+                      ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "Estimated Time For retirement",
-                            style: TextStyle(
-                                fontSize: 11.5, fontWeight: FontWeight.w500),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                "Estimated Time For retirement",
+                                style: TextStyle(
+                                    fontSize: 11.5,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) {
+                                        return showInfo(
+                                            "Time left for retirement in years");
+                                      });
+                                },
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: 10.0),
+                                  child:
+                                      SvgPicture.asset("assets/info_icon.svg"),
+                                ),
+                              )
+                            ],
                           ),
                           SizedBox(
                             height: deviceSize.height * 0.008,
