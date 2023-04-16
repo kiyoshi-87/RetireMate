@@ -37,9 +37,3 @@ It provides tools and calculators that help users determine how much they need t
 - Security and Privacy:
   The application should prioritize security and privacy. All user data should be encrypted and protected using industry-standard security protocols. Users should have the ability to control their privacy settings and choose what information they want to share with the application.
 
-- Scalability:
-  The application should be designed to handle a large number of users and data points. The application should be able to scale up as the user base grows and handle increased traffic without affecting performance.
-
-- Maintenance:
-  The application should have a maintenance plan in place to ensure that the application remains up-to-date, secure, and bug-free. Regular updates and bug fixes should be performed to ensure that the application runs smoothly and meets the needs of its users.
-
