@@ -16,7 +16,7 @@ Retiremate is a retirement planning app that helps users to plan their finances 
 
 To start using Retiremate, follow these simple steps:
 
-1. Download the apk file from [here](https://drive.google.com/file/d/1WfkhBIkNmgfjhTGMBY3VYkeUXoMzNhuk/view?usp=sharing).
+1. Download the apk file from [here](https://github.com/kiyoshi-87/RetireMate/releases/download/v0.1.0-beta/RetireMate.apk) or check our release notes.
 2. Sign Up for a new account using your email id.
 3. Start using Retiremate's tools and calculators to plan your retirement finances.
 
